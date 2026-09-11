@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "skills": {
+    "next-best-practices": {
+      "source": "vercel-labs/openreview",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/next-best-practices/SKILL.md",
+      "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
+    },
+    "nextjs-best-practices": {
+      "source": "smithery.ai",
+      "sourceUrl": "https://smithery.ai/skills/davila7/nextjs-best-practices",
+      "sourceType": "well-known",
+      "computedHash": "7b31199cce0f9a1b17acdf880469b0f9ddf9eb63577b1fde567def461d888287",
+      "wellKnownDigest": "sha256:6c6f32dfe6d79994031ba2a9e0dfa8ae14da23cc3fb28e09d3820b5ee8bf93ab"
+    },
+    "radix-ui-design-system": {
+      "source": "sickn33/agentic-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/radix-ui-design-system/SKILL.md",
+      "computedHash": "361baf1d1852e39b3f883ce145f173136b4394f19438dfb07fed0c8e2ef969e8"
+    },
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "computedHash": "5ea13a6d9f0d4bb694405d79acd00cadec0d21bb138c4dd10fcf3c500cb835c2"
+    }
+  }
+}
