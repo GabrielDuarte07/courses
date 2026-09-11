@@ -1,4 +1,5 @@
 import { ArrowRightIcon, CodeIcon, LightningBoltIcon, RocketIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 import { CourseCarousel } from "@/components/course-carousel";
 import { Button } from "@/components/ui/button";
 import { courses } from "@/data/courses";
@@ -14,8 +15,8 @@ function Header() {
           DevForge
         </a>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm">
-            Sign in
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/sign-in">Sign in</Link>
           </Button>
           <Button size="sm">Get started</Button>
         </div>
@@ -188,7 +189,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col bg-background">
+    <div className="animate-slide-in flex flex-1 flex-col bg-background">
       <Header />
       <main className="flex-1">
         <Hero />
