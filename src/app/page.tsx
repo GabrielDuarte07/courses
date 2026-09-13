@@ -69,8 +69,8 @@ function Courses() {
             Pick a course, start building
           </h2>
           <p className="max-w-2xl text-muted-foreground">
-            Each card is interactive — click one to focus it, or let the carousel spin and watch the
-            details update live.
+            Each card opens its own course page — or let the carousel spin and watch the details
+            update live.
           </p>
         </div>
         <CourseCarousel />

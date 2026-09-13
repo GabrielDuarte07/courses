@@ -8,6 +8,7 @@ import {
   StarFilledIcon,
 } from "@radix-ui/react-icons";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,38 +21,12 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/components/ui/utils";
 import { type Course, courses } from "@/data/courses";
+import { formatPrice, formatStudents } from "@/lib/format";
 
-function formatPrice(price: number) {
-  return price.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-}
-
-function formatStudents(count: number) {
-  if (count >= 1000) {
-    return `${(count / 1000).toLocaleString("en-US", {
-      maximumFractionDigits: 1,
-    })}K`;
-  }
-  return count.toLocaleString("en-US");
-}
-
-function CourseCard({
-  course,
-  active,
-  onClick,
-}: {
-  course: Course;
-  active: boolean;
-  onClick: () => void;
-}) {
+function CourseCard({ course, active }: { course: Course; active: boolean }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
+    <Link
+      href={`/detail/${course.slug}`}
       aria-current={active}
       className={cn(
         "group relative flex h-full w-full flex-col overflow-hidden rounded-xl border bg-card text-left shadow-lg transition-all",
@@ -87,7 +62,7 @@ function CourseCard({
           </span>
         </div>
       </div>
-    </button>
+    </Link>
   );
 }
 
@@ -145,7 +120,9 @@ function CourseDetails({ course }: { course: Course }) {
               {formatPrice(course.price)}
             </p>
           </div>
-          <Button size="lg">Enroll in course</Button>
+          <Button size="lg" asChild>
+            <Link href={`/detail/${course.slug}`}>Enroll in course</Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -235,11 +212,7 @@ export function CourseCarousel() {
               className="basis-4/5 pl-3 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
             >
               <div className="h-full">
-                <CourseCard
-                  course={course}
-                  active={index === current}
-                  onClick={() => goTo(index)}
-                />
+                <CourseCard course={course} active={index === current} />
               </div>
             </CarouselItem>
           ))}
