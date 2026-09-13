@@ -258,3 +258,7 @@ export const courses: Course[] = [
     accent: "from-amber-500 to-yellow-400",
   },
 ];
+
+export function getCourseBySlug(slug: string) {
+  return courses.find((course) => course.slug === slug);
+}

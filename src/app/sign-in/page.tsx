@@ -1,5 +1,6 @@
-import { ArrowLeftIcon, CodeIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -9,23 +10,15 @@ export const metadata = {
 
 export default function SignInPage() {
   return (
-    <div className="flex min-h-full flex-col bg-background">
-      <header className="sticky top-0 z-20 border-b border-border/60 bg-background/80 backdrop-blur">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-          <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <CodeIcon className="h-4 w-4" />
-            </span>
-            DevForge
+    <>
+      <SiteHeader>
+        <Button variant="ghost" size="sm" asChild>
+          <Link href="/">
+            <ArrowLeftIcon />
+            Back to home
           </Link>
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/">
-              <ArrowLeftIcon />
-              Back to home
-            </Link>
-          </Button>
-        </div>
-      </header>
+        </Button>
+      </SiteHeader>
       <main className="flex flex-1 items-center justify-center px-6 py-20">
         <div className="animate-slide-in w-full max-w-md">
           <div className="rounded-2xl border border-border bg-card p-8">
@@ -77,6 +70,6 @@ export default function SignInPage() {
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }

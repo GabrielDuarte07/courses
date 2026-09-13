@@ -1,36 +1,16 @@
 import { ArrowRightIcon, CodeIcon, LightningBoltIcon, RocketIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { CourseCarousel } from "@/components/course-carousel";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { courses } from "@/data/courses";
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-20 border-b border-border/60 bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <CodeIcon className="h-4 w-4" />
-          </span>
-          DevForge
-        </a>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" asChild>
-            <Link href="/sign-in">Sign in</Link>
-          </Button>
-          <Button size="sm">Get started</Button>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 function Hero() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20 text-center sm:py-28">
       <p className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground">
         <LightningBoltIcon className="h-4 w-4 text-primary" />
-        15 hands-on courses, one learning path
+        {courses.length} hands-on courses, one learning path
       </p>
       <h1 className="mx-auto max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
         Master development by{" "}
@@ -125,6 +105,7 @@ function Features() {
   const report = courses[0];
   const totalHours = courses.reduce((sum, course) => sum + course.durationHours, 0);
   const totalLessons = courses.reduce((sum, course) => sum + course.lessons, 0);
+  const languagesCount = new Set(courses.map((course) => course.language)).size;
 
   return (
     <section id="features" className="scroll-mt-20 py-20">
@@ -149,7 +130,7 @@ function Features() {
                 { label: "Courses", value: courses.length },
                 { label: "Hours of content", value: totalHours },
                 { label: "Lessons", value: `${totalLessons}+` },
-                { label: "Languages", value: 15 },
+                { label: "Languages", value: languagesCount },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-border bg-background p-6">
                   <p className="text-3xl font-extrabold text-primary">{stat.value}</p>
@@ -190,7 +171,12 @@ function Footer() {
 export default function Home() {
   return (
     <div className="animate-slide-in flex flex-1 flex-col bg-background">
-      <Header />
+      <SiteHeader>
+        <Button variant="ghost" size="sm" asChild>
+          <Link href="/sign-in">Sign in</Link>
+        </Button>
+        <Button size="sm">Get started</Button>
+      </SiteHeader>
       <main className="flex-1">
         <Hero />
         <Courses />

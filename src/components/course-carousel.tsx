@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  BarChartIcon,
-  ClockIcon,
-  LayersIcon,
-  PersonIcon,
-  StarFilledIcon,
-} from "@radix-ui/react-icons";
+import { BarChartIcon, ClockIcon, StarFilledIcon } from "@radix-ui/react-icons";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import * as React from "react";
+import { CourseStats, StarRatingBadge } from "@/components/course-meta";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -21,7 +16,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/components/ui/utils";
 import { type Course, courses } from "@/data/courses";
-import { formatPrice, formatStudents } from "@/lib/format";
+import { formatPrice } from "@/lib/format";
 
 function CourseCard({ course, active }: { course: Course; active: boolean }) {
   return (
@@ -84,10 +79,7 @@ function CourseDetails({ course }: { course: Course }) {
             <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
               {course.level}
             </span>
-            <span className="flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-              <StarFilledIcon className="h-3.5 w-3.5 text-amber-400" />
-              {course.rating.toFixed(1)} rating
-            </span>
+            <StarRatingBadge course={course} />
           </div>
           <h3 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {course.title}
@@ -98,20 +90,7 @@ function CourseDetails({ course }: { course: Course }) {
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
             {course.description}
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2">
-              <ClockIcon className="h-4 w-4" />
-              {course.durationHours}h of content
-            </span>
-            <span className="flex items-center gap-2">
-              <LayersIcon className="h-4 w-4" />
-              {course.lessons} lessons
-            </span>
-            <span className="flex items-center gap-2">
-              <PersonIcon className="h-4 w-4" />
-              {formatStudents(course.students)} students
-            </span>
-          </div>
+          <CourseStats course={course} />
         </div>
         <div className="flex flex-col items-start gap-4 lg:items-end">
           <div>
@@ -121,7 +100,7 @@ function CourseDetails({ course }: { course: Course }) {
             </p>
           </div>
           <Button size="lg" asChild>
-            <Link href={`/detail/${course.slug}`}>Enroll in course</Link>
+            <Link href={`/detail/${course.slug}`}>Check it out</Link>
           </Button>
         </div>
       </div>
@@ -144,9 +123,10 @@ function CourseDots({
       role="tablist"
       aria-label="Course slides"
     >
-      {courses.slice(0, total).map((course, index) => (
+      {Array.from({ length: total }).map((_, index) => (
         <button
-          key={course.id}
+          // biome-ignore lint/suspicious/noArrayIndexKey: dots are a fixed, non-reorderable list keyed by position
+          key={index}
           type="button"
           onClick={() => onSelect(index)}
           aria-label={`Go to course ${index + 1}`}

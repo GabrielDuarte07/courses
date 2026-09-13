@@ -159,20 +159,18 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
     const { orientation } = useCarousel();
 
     return (
-      <>
-        {/* biome-ignore lint/a11y/useSemanticElements: role="group" is the WAI-ARIA pattern for a carousel slide */}
-        <div
-          ref={ref}
-          role="group"
-          aria-roledescription="slide"
-          className={cn(
-            "min-w-0 shrink-0 grow-0 basis-full",
-            orientation === "horizontal" ? "pl-4" : "pt-4",
-            className,
-          )}
-          {...props}
-        />
-      </>
+      // biome-ignore lint/a11y/useSemanticElements: role="group" is the WAI-ARIA pattern for a carousel slide
+      <div
+        ref={ref}
+        role="group"
+        aria-roledescription="slide"
+        className={cn(
+          "min-w-0 shrink-0 grow-0 basis-full",
+          orientation === "horizontal" ? "pl-4" : "pt-4",
+          className,
+        )}
+        {...props}
+      />
     );
   },
 );
