@@ -86,7 +86,9 @@ export default async function DetailPage({ params }: Params) {
                 <CourseStats course={course} className="mt-6" />
                 <div className="mt-auto flex flex-col items-start gap-6 pt-10 sm:flex-row sm:items-end sm:justify-between">
                   <div>
-                    <span className="text-xs text-muted-foreground">Course price</span>
+                    <span className="text-xs text-muted-foreground">
+                      Course price
+                    </span>
                     <p className="text-4xl font-bold tracking-tight text-foreground">
                       {formatPrice(course.price)}
                     </p>
