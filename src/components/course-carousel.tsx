@@ -30,7 +30,12 @@ function CourseCard({ course, active }: { course: Course; active: boolean }) {
           : "border-border hover:border-primary/50",
       )}
     >
-      <div className={cn("h-20 w-full bg-gradient-to-br to-transparent", course.accent)} />
+      <div
+        className={cn(
+          "h-20 w-full bg-gradient-to-br to-transparent",
+          course.accent,
+        )}
+      />
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-center justify-between gap-2">
           <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -41,7 +46,9 @@ function CourseCard({ course, active }: { course: Course; active: boolean }) {
             {course.rating.toFixed(1)}
           </span>
         </div>
-        <h4 className="text-base font-semibold leading-tight text-foreground">{course.title}</h4>
+        <h4 className="text-base font-semibold leading-tight text-foreground">
+          {course.title}
+        </h4>
         <p className="text-sm text-muted-foreground">{course.tagline}</p>
         <div className="mt-auto flex items-center gap-3 pt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
